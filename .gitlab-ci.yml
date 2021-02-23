@@ -1,0 +1,20 @@
+image: python:3.8
+
+stages:
+    - deploy
+
+before_script:
+    - curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+    - source $HOME/.poetry/env
+    - poetry install
+
+pypi:
+    stage: deploy
+    script:
+        - poetry config pypi-token.pypi $PYPI_TOKEN
+        - poetry publish --build
+    only:
+        - master
+    environment:
+        name: pypi
+        url: https://pypi.org/project/collectors-channel-cli
