@@ -1,27 +1,22 @@
-# You can override the included template(s) by including variable overrides
-# See https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
-# Note that environment variables can be set in several places
-# See https://docs.gitlab.com/ee/ci/variables/#priority-of-environment-variables
-image: python:3.8
+image: python:3.9-slim
+
 stages:
-- deploy
-- test
-before_script:
-- curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py
-  | python -
-- source $HOME/.poetry/env
-- poetry install
+  - test
+  - deploy
+
+include:
+  - template: Security/SAST.gitlab-ci.yml
+
 pypi:
   stage: deploy
   script:
-  - poetry config pypi-token.pypi $PYPI_TOKEN
-  - poetry publish --build
+    - curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+    - source $HOME/.poetry/env
+    - poetry install
+    - poetry config pypi-token.pypi $PYPI_TOKEN
+    - poetry publish --build
   only:
-  - master
+    - master
   environment:
     name: pypi
     url: https://pypi.org/project/collectors-channel-cli
-sast:
-  stage: test
-include:
-- template: Security/SAST.gitlab-ci.yml
