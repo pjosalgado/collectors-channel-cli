@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from os.path import expanduser
 
-DEFAULT_COLLECTIONS = ['amazon', 'famdvd', 'theoriginals', 'videoperola']
+SITES_AVAILABLE = ['amazon', 'colecione-classicos', 'fam-dvd', 'the-originals', 'video-perola']
 
 app = typer.Typer()
 
@@ -14,13 +14,20 @@ app = typer.Typer()
 @app.command()
 def find(title, title_type=None, site=None):
 
+    if site: 
+        if site in SITES_AVAILABLE: 
+            site = site.replace('-', '')
+        else: 
+            typer.echo(typer.style("Site {} not found".format(site), fg=typer.colors.RED), err=True)
+            sys.exit()
+
     data = []
 
     if site: 
         data = find_in_site(title, title_type, site)
     else: 
-        for site in DEFAULT_COLLECTIONS: 
-            data = find_in_site(title, title_type, site, data)
+        for service in SITES_AVAILABLE: 
+            data = find_in_site(title, title_type, service, data)
 
     json_dumped = json.dumps(data, indent=4, ensure_ascii=False)
     typer.echo(json_dumped)
@@ -28,7 +35,7 @@ def find(title, title_type=None, site=None):
 
 @app.command()
 def sites():
-    typer.echo(json.dumps(DEFAULT_COLLECTIONS, indent=4))
+    typer.echo(json.dumps(SITES_AVAILABLE, indent=4))
 
 
 def find_in_site(title, title_type, site, data = []): 
