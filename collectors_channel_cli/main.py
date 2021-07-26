@@ -82,7 +82,7 @@ def find_in_mongodb(col, title, title_type):
 
 def check_env_file_exists():
 
-    env_file = os.path.join(expanduser("~"), '.cc/my.properties')
+    env_file = os.path.join(expanduser("~"), '.colcha/my.properties')
     env_file_path = Path(env_file)
 
     if env_file_path.is_file():

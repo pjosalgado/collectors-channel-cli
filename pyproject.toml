@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "collectors-channel-cli"
-version = "1.1.0"
+version = "1.2.0"
 description = ""
 authors = ["Paulo Salgado <pjosalgado@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.scripts]
-cc = "collectors_channel_cli.main:setup"
+colcha = "collectors_channel_cli.main:setup"
 
 [tool.poetry.dependencies]
 python = "^3.8"
