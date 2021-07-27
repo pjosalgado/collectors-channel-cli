@@ -9,10 +9,13 @@ from os.path import expanduser
 SITES_AVAILABLE = ['amazon', 'colecione-classicos', 'fam-dvd', 'the-originals', 'video-perola']
 
 app = typer.Typer()
+default_props = os.path.join(expanduser("~"), '.colcha/my.properties')
 
 
 @app.command()
-def find(title, title_type=None, site=None):
+def find(title, title_type=None, site=None, props=None):
+
+    check_env_file_exists(props)
 
     if site: 
         if site in SITES_AVAILABLE: 
@@ -80,9 +83,13 @@ def find_in_mongodb(col, title, title_type):
     return list(db_result)
 
 
-def check_env_file_exists():
+def check_env_file_exists(props):
 
-    env_file = os.path.join(expanduser("~"), '.colcha/my.properties')
+    if props: 
+        env_file = os.path.join(os.getcwd(), props)
+    else: 
+        env_file = default_props
+
     env_file_path = Path(env_file)
 
     if env_file_path.is_file():
@@ -93,7 +100,6 @@ def check_env_file_exists():
 
 
 def setup(): 
-    check_env_file_exists()
     app()
 
 
