@@ -19,7 +19,6 @@ pypi:
     - source $HOME/.poetry/env
     - poetry install
     - poetry config pypi-token.pypi $PYPI_TOKEN
-    - mv README-PyPI.md README.md
     - poetry publish --build
   only:
     - master
