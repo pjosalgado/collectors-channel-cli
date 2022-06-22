@@ -1,10 +1,6 @@
 # collectors-channel-cli
+Built with ❤️ using [Typer](https://typer.tiangolo.com)
 
-Create a properties file at ``$HOME/.colcha/my.properties`` using this as an example: 
-```
-# MongoDB
-MONGO_URL=mongodb+srv://user:password@url/database
-```
-Or pass ``--props`` to the CLI with the file location.
 
-Check out the project at GitLab: https://gitlab.com/collectors-channel.
+## Run locally
+Copy ``example.env`` to ``.env.sh`` configuring the necessary environment variables and run the application using ``python collectors_channel_cli/main.py``.
