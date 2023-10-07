@@ -9,7 +9,7 @@ from os.path import expanduser
 SITES_AVAILABLE = ['amazon', 'colecione-classicos', 'fam-dvd', 'the-originals', 'video-perola']
 
 app = typer.Typer()
-default_props = os.path.join(expanduser("~"), '.colcha/my.properties')
+default_props = os.path.join(expanduser("~"), '.collectors/my.properties')
 
 
 @app.command()
@@ -101,7 +101,6 @@ def check_env_file_exists(props):
 
 def setup(): 
     app()
-
 
 if __name__ == "__main__":
     setup()
