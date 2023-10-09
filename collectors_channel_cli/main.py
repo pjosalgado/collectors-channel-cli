@@ -6,7 +6,14 @@ import json
 from pathlib import Path
 from os.path import expanduser
 
-SITES_AVAILABLE = ['amazon', 'colecione-classicos', 'fam-dvd', 'the-originals', 'video-perola']
+SITES_AVAILABLE = [
+    'amazon',
+    'colecione-classicos',
+    'fam-dvd',
+    'the-originals',
+    'versatil',
+    'video-perola'
+]
 
 app = typer.Typer()
 default_props = os.path.join(expanduser("~"), '.collectors/my.properties')
