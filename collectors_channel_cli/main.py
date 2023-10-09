@@ -10,6 +10,7 @@ SITES_AVAILABLE = [
     'amazon',
     'colecione-classicos',
     'fam-dvd',
+    'imusic-br',
     'the-originals',
     'versatil',
     'video-perola'
