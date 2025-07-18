@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "collectors-channel-cli"
-version = "1.8.0"
+version = "1.8.1"
 description = ""
 authors = ["Paulo Salgado <pjosalgado@gmail.com>"]
 readme = "README-PyPI.md"
