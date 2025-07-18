@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "collectors-channel-cli"
-version = "1.8.1"
-description = ""
+version = "1.8.2"
+description = "Monitor your favorite shops in search of disc titles launches and promotions"
 authors = ["Paulo Salgado <pjosalgado@gmail.com>"]
 readme = "README-PyPI.md"
 
