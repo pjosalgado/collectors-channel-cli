@@ -12,6 +12,8 @@ sast:
 
 pypi:
   stage: deploy
+  only:
+    - master
   script:
     - apt-get update
     - apt-get install curl -y
@@ -20,8 +22,6 @@ pypi:
     - poetry install
     - poetry config pypi-token.pypi $PYPI_TOKEN
     - poetry publish --build
-  only:
-    - master
   environment:
     name: pypi
     url: https://pypi.org/project/collectors-channel-cli
